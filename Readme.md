@@ -39,7 +39,7 @@ What this site is already pretty if you follow the mocks :wink: Make sure the fe
 ### BONUS Ideas - Sharing the fun
 - Keeps should be tagged. Make the site better by implementing a search filter.
 - Write a few tests for your components.
-- When a user clicks the share icon they should be able to post that share to the various social medias (Facebook, Twitter, ect) 
+- When a user clicks the share icon they should be able to post that share to the various social medias (Facebook, Twitter, etc.) 
 
 ## Requirements
   #### Visualization: 
