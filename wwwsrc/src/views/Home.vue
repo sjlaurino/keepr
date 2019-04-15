@@ -21,7 +21,7 @@
               <div class="dropdown-divider"></div>
             </div>
             <div>
-              <a @click="logOut()" class="dropdown-item">logout</a>
+              <a @click="logOut" class="dropdown-item">logout</a>
             </div>
           </div>
         </div>
@@ -62,16 +62,18 @@ export default {
       return this.$store.state.keeps;
     },
     homePage() {
-      return this.$route.name == "#";
+      return this.$route.name == "home";
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch("logOut");
     },
     home() {
       this.$router.push({ name: "home" });
     },
-    logOut() {
-      this.$store.dispatch("logOut");
-    },
     profile() {
-      if (userId) {
+      if (this.$store.state.user.id) {
         this.$router.push({ name: "profile" });
       }
     }
@@ -84,6 +86,11 @@ export default {
 </script>
 <style>
 .createKeep {
+  cursor: pointer;
+}
+</style>
+<style>
+.dropdown-item {
   cursor: pointer;
 }
 </style>
