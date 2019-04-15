@@ -28,7 +28,7 @@ namespace Keepr.Controllers
       {
         return BadRequest();
       }
-      return Ok();
+      return Ok(results);
     }
 
     [HttpGet("{id}")]
@@ -45,6 +45,7 @@ namespace Keepr.Controllers
     [HttpPost]
     public ActionResult<Keep> Create([FromBody] Keep keepData)
     {
+      keepData.UserId = HttpContext.User.Identity.Name;
       Keep newKeep = _kr.CreateKeep(keepData);
       if (newKeep == null)
       {

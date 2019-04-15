@@ -45,6 +45,7 @@ namespace Vaultr.Controllers
     [HttpPost]
     public ActionResult<Vault> Create([FromBody] Vault vaultData)
     {
+      vaultData.UserId = HttpContext.User.Identity.Name;
       Vault newVault = _vr.CreateVault(vaultData);
       if (newVault == null)
       {
