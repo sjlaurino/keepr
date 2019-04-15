@@ -28,11 +28,28 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO vaults(title, description, userId)
-        VALUES (@Title, @Description, @UserId );
+        INSERT INTO vaults(name, description, userId)
+        VALUES (@Name, @Description, @UserId );
         SELECT LAST_INSERT_ID();", vaultData);
         vaultData.Id = id;
         return vaultData;
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+        return null;
+      }
+    }
+    public VaultKeep CreateVaultKeep(VaultKeep vaultKeepData)
+    {
+      try
+      {
+        int id = _db.ExecuteScalar<int>(@"
+        INSERT INTO vaultKeeps(vaultId, keepId, userId)
+        VALUES (@VaultId, @KeepId, @UserId );
+        SELECT LAST_INSERT_ID();", vaultKeepData);
+        vaultKeepData.Id = id;
+        return vaultKeepData;
       }
       catch (Exception e)
       {
@@ -46,5 +63,6 @@ namespace keepr.Repositories
       int success = _db.Execute("DELETE FROM vaults WHERE id = @id", new { id });
       return success > 0;
     }
+
   }
 }

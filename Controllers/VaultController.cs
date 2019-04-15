@@ -66,6 +66,16 @@ namespace Vaultr.Controllers
       return Ok("successfully deleted");
     }
 
-
+    //create vaultkeeps
+    [HttpPost("{vaultId}")]
+    public ActionResult<VaultKeep> Create([FromBody] VaultKeep vaultKeepData)
+    {
+      VaultKeep newVaultKeep = _vr.CreateVaultKeep(vaultKeepData);
+      if (newVaultKeep == null)
+      {
+        return BadRequest("Can't add Keep");
+      }
+      return Ok(newVaultKeep);
+    }
   }
 }
