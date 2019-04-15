@@ -29,12 +29,22 @@
       </div>
     </div>
     <button
+      v-if="userId"
       type="button"
-      class="btn btn-primary createKeep"
+      class="inline btn btn-primary createKeep"
       data-toggle="modal"
       data-target="#createKeepModal"
     >Create a Keep</button>
     <createKeep></createKeep>
+    <button
+      v-if="userId"
+      type="button"
+      class="inline btn btn-primary createKeep"
+      data-toggle="modal"
+      data-target="#createVaultModal"
+    >Create a Vault</button>
+    <createKeep></createKeep>
+    <createVault></createVault>
 
     <keeps class="ml-2 mt-2" v-for="keep in keeps" :keepData="keep" :key="keep._id"></keeps>
   </div>
@@ -43,6 +53,7 @@
 <script>
 import keeps from "@/components/keeps.vue";
 import createKeep from "@/components/createKeep.vue";
+import createVault from "@/components/createVault.vue";
 
 export default {
   name: "home",
@@ -80,7 +91,8 @@ export default {
   },
   components: {
     keeps,
-    createKeep
+    createKeep,
+    createVault
   }
 };
 </script>
@@ -92,5 +104,8 @@ export default {
 <style>
 .dropdown-item {
   cursor: pointer;
+}
+.inline {
+  display: inline-block;
 }
 </style>

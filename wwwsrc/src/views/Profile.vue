@@ -43,6 +43,15 @@ export default {
       return this.$route.name == "home";
     }
   },
+  mounted() {
+    //blocks users not logged in
+    if (!this.$store.state.user.id) {
+      this.$router.push({ name: "login" });
+    } else {
+      this.$store.dispatch("getKeeps");
+      this.$store.dispatch("getVaults", this.$store.state.user.id);
+    }
+  },
   methods: {},
   components: {},
   methods: {
