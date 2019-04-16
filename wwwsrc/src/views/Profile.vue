@@ -27,21 +27,23 @@
         <h1>My Vaults</h1>
       </div>
     </div>
-    <button
-      v-if="userId"
-      type="button"
-      class="inline btn btn-primary createKeep"
-      data-toggle="modal"
-      data-target="#createKeepModal"
-    >Create a Keep</button>
-    <createKeep></createKeep>
-    <button
-      v-if="userId"
-      type="button"
-      class="inline btn btn-primary createKeep mt-1"
-      data-toggle="modal"
-      data-target="#createVaultModal"
-    >Create a Vault</button>
+    <span class="d-flex flex-row justify-content-center mb-5">
+      <button
+        v-if="userId"
+        type="button"
+        class="inline btn btn-outline-info createKeep mr-1"
+        data-toggle="modal"
+        data-target="#createKeepModal"
+      >Create a Keep</button>
+      <createKeep></createKeep>
+      <button
+        v-if="userId"
+        type="button"
+        class="inline btn btn-outline-info createKeep ml-1"
+        data-toggle="modal"
+        data-target="#createVaultModal"
+      >Create a Vault</button>
+    </span>
     <createKeep></createKeep>
     <createVault></createVault>
     <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault._id"></vaults>

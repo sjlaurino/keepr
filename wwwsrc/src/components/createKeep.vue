@@ -42,7 +42,7 @@
               v-model="newKeep.img"
               required
             >
-
+            <!-- need to add a button to make private -->
             <button
               type="submit"
               class="btn btn-outline-info mt-1 ml-2 mb-3"
