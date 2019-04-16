@@ -1,11 +1,10 @@
 <template>
-  <div class="home">
+  <div class="home container">
     <div class="row">
       <div class="col-12">
-        <div class="dropdown col-1 line ml-1 mt-1">
+        <div class="dropdown col-1 line mt-1">
           <i
             class="fas fa-bars d-flex"
-            type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -29,6 +28,7 @@
       </div>
     </div>
     <button
+      @click="notLoggedIn"
       v-if="userId"
       type="button"
       class="inline btn btn-primary createKeep"
@@ -37,16 +37,20 @@
     >Create a Keep</button>
     <createKeep></createKeep>
     <button
+      @click="notLoggedIn"
       v-if="userId"
       type="button"
-      class="inline btn btn-primary createKeep"
+      class="inline btn btn-primary createKeep mt-1"
       data-toggle="modal"
       data-target="#createVaultModal"
     >Create a Vault</button>
     <createKeep></createKeep>
     <createVault></createVault>
-
-    <keeps class="ml-2 mt-2" v-for="keep in keeps" :keepData="keep" :key="keep._id"></keeps>
+    <div class="row">
+      <div class="card-columns">
+        <keeps class="ml-2 mt-2"></keeps>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -58,12 +62,10 @@ import createVault from "@/components/createVault.vue";
 export default {
   name: "home",
   mounted() {
-    //blocks users not logged in
     if (!this.$store.state.user.id) {
       this.$router.push({ name: "login" });
-    } else {
-      this.$store.dispatch("getKeeps");
     }
+    this.$store.dispatch("getKeeps");
   },
   computed: {
     userId() {
@@ -77,6 +79,14 @@ export default {
     }
   },
   methods: {
+    notLoggedIn() {
+      if (!this.$store.state.user.id) {
+        //put in a sweet alert with an option to go to login or register page
+        this.$router.push({ name: "login" });
+      } else {
+        return;
+      }
+    },
     logOut() {
       this.$store.dispatch("logOut");
     },
@@ -100,9 +110,10 @@ export default {
 .createKeep {
   cursor: pointer;
 }
-</style>
-<style>
 .dropdown-item {
+  cursor: pointer;
+}
+.dropdown {
   cursor: pointer;
 }
 .inline {

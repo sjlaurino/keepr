@@ -1,11 +1,10 @@
 <template>
-  <div class="profile">
+  <div class="profile container">
     <div class="row">
       <div class="col-12">
         <div class="dropdown col-1 line ml-1 mt-1">
           <i
             class="fas fa-bars d-flex"
-            type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
             aria-haspopup="true"
@@ -28,12 +27,31 @@
         <h1>My Vaults</h1>
       </div>
     </div>
+    <button
+      v-if="userId"
+      type="button"
+      class="inline btn btn-primary createKeep"
+      data-toggle="modal"
+      data-target="#createKeepModal"
+    >Create a Keep</button>
+    <createKeep></createKeep>
+    <button
+      v-if="userId"
+      type="button"
+      class="inline btn btn-primary createKeep mt-1"
+      data-toggle="modal"
+      data-target="#createVaultModal"
+    >Create a Vault</button>
+    <createKeep></createKeep>
+    <createVault></createVault>
     <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault._id"></vaults>
   </div>
 </template>
 
 <script>
 import vaults from "@/components/vaults.vue";
+import createKeep from "@/components/createKeep.vue";
+import createVault from "@/components/createVault.vue";
 export default {
   name: "profile",
   props: [],
@@ -46,6 +64,9 @@ export default {
     },
     vaults() {
       return this.$store.state.vaults;
+    },
+    userId() {
+      return this.$store.state.user.id;
     }
   },
   mounted() {
@@ -58,7 +79,11 @@ export default {
     }
   },
   methods: {},
-  components: { vaults },
+  components: {
+    vaults,
+    createKeep,
+    createVault
+  },
   methods: {
     logOut() {
       this.$store.dispatch("logOut");
@@ -76,6 +101,9 @@ export default {
 </script>
 <style>
 .dropdown-item {
+  cursor: pointer;
+}
+.dropdown {
   cursor: pointer;
 }
 </style>
