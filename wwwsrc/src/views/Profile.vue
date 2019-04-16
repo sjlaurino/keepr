@@ -46,7 +46,7 @@
     </span>
     <createKeep></createKeep>
     <createVault></createVault>
-    <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault._id"></vaults>
+    <vaults class="ml-2 mt-2"></vaults>
   </div>
 </template>
 
@@ -73,11 +73,17 @@ export default {
   },
   mounted() {
     //blocks users not logged in
+    this.$store.dispatch("getVaults", this.$store.state.user.id);
     if (!this.$store.state.user.id) {
       this.$router.push({ name: "login" });
     } else {
       this.$store.dispatch("getKeeps");
-      this.$store.dispatch("getVaults", this.$store.state.user.id);
+      let vaults = this.vaults;
+      for (let i = 0; i < vaults.length; i++) {
+        let vault = vaults[i];
+        let vaultId = vault.id;
+        this.getVaultKeeps(vaultId);
+      }
     }
   },
   methods: {},
@@ -97,6 +103,10 @@ export default {
       if (this.$store.state.user.id) {
         this.$router.push({ name: "profile" });
       }
+    },
+    getVaultKeeps(vaultId) {
+      debugger;
+      this.$store.dispatch("getVaultKeeps", vaultId);
     }
   }
 };

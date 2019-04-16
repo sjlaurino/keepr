@@ -78,5 +78,19 @@ namespace Vaultr.Controllers
       }
       return Ok(newVaultKeep);
     }
+
+    //getVaultKeeps
+    [HttpGet("{vaultId}/keep")]
+    public ActionResult<IEnumerable<Keep>> GetVaultKeeps(int vaultId)
+    {
+      string userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _vr.GetVaultKeeps(vaultId, userId);
+      if (results == null)
+      {
+        return BadRequest();
+      }
+      return Ok(results);
+    }
+
   }
 }

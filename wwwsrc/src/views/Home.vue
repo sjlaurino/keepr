@@ -68,6 +68,7 @@ export default {
       this.$router.push({ name: "login" });
     }
     this.$store.dispatch("getKeeps");
+    this.$store.dispatch("getVaults");
   },
   computed: {
     userId() {
