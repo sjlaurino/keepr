@@ -28,7 +28,7 @@ namespace Vaultr.Controllers
       {
         return BadRequest();
       }
-      return Ok();
+      return Ok(results);
     }
 
     [HttpGet("{id}")]

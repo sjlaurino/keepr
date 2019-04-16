@@ -28,10 +28,12 @@
         <h1>My Vaults</h1>
       </div>
     </div>
+    <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault._id"></vaults>
   </div>
 </template>
 
 <script>
+import vaults from "@/components/vaults.vue";
 export default {
   name: "profile",
   props: [],
@@ -41,6 +43,9 @@ export default {
   computed: {
     homePage() {
       return this.$route.name == "home";
+    },
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
   mounted() {
@@ -53,7 +58,7 @@ export default {
     }
   },
   methods: {},
-  components: {},
+  components: { vaults },
   methods: {
     logOut() {
       this.$store.dispatch("logOut");

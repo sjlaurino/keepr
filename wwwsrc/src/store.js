@@ -80,9 +80,8 @@ export default new Vuex.Store({
           commit("setKeeps", res.data)
         })
     },
-    getVaults({ commit, dispatch }, userId) {
-      debugger
-      api.get("/vault/" + userId)
+    getVaults({ commit, dispatch }) {
+      api.get("/vault/")
         .then(res => {
           commit("setVaults", res.data)
         }
@@ -98,6 +97,12 @@ export default new Vuex.Store({
       api.post("/vault/", vault)
         .then(res => {
           dispatch("getVaults", vault.userId)
+        })
+    },
+    deleteVault({ commit, dispatch }, vault) {
+      api.delete("/vault/" + vault.id)
+        .then(res => {
+          dispatch("getVaults")
         })
     }
   }
