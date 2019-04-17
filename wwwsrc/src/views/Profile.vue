@@ -46,7 +46,7 @@
     </span>
     <createKeep></createKeep>
     <createVault></createVault>
-    <vaults class="ml-2 mt-2"></vaults>
+    <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault._id"></vaults>
   </div>
 </template>
 
