@@ -13,7 +13,7 @@
           <div class="modal-header d-flex justify-content-between">
             <i
               v-if="user"
-              @click="deleteKeep(activeKeep)"
+              @click="deleteKeep(activeKeep, vault)"
               class="far fa-trash-alt trash mt-1 mr-1"
               data-dismiss="modal"
               aria-label="Close"
@@ -66,7 +66,7 @@
 <script>
 export default {
   name: "OneKeep",
-  props: [],
+  props: ["vaultId"],
   data() {
     return {};
   },
@@ -83,10 +83,18 @@ export default {
   },
   methods: {
     deleteKeep(activeKeep) {
-      if (this.user.id == activeKeep.userId) {
-        this.$store.dispatch("deleteKeep", activeKeep);
-      } else {
-        console.log("Not your Keep to delete");
+      if (this.$route.name == "home") {
+        if (this.user.id == activeKeep.userId) {
+          this.$store.dispatch("deleteKeep", activeKeep);
+        } else {
+          console.log("Not your Keep to delete");
+        }
+      } else if (this.$route.name == "profile") {
+        deleteKeepFromVault(activeKeep){
+          let userId = this.$store.state.user.id
+          let keepId = activeKeep.id
+          let vaultId =
+        }
       }
     },
     addVaultKeep(vault) {

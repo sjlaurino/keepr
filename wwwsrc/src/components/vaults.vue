@@ -18,7 +18,7 @@
                 data-toggle="modal"
                 data-target="#oneKeepModal"
               ></i>
-              <oneKeep></oneKeep>
+              <oneKeep :vaultId="vaultData.id"></oneKeep>
             </span>
             <img :src="keep.img" class="card-img-top img-fluid">
             <div class="card-body">

@@ -63,6 +63,9 @@ export default {
     },
     activeKeep() {
       return this.$store.state.activeKeep;
+    },
+    vaultKeeps() {
+      return this.$store.state.vaultKeeps;
     }
   },
   methods: {
