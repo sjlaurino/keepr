@@ -5,7 +5,7 @@
         <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
           <!-- change this to only be accessible by user when keep is opened -->
           <i
-            @click="setActiveKeep(keep)"
+            @click="addView(keep)"
             class="fas fa-expand"
             data-toggle="modal"
             data-target="#oneKeepModal"
@@ -75,6 +75,11 @@ export default {
         keepId: this.activeKeep.id,
         userId: this.$store.state.user.id
       });
+    },
+    addView(keep) {
+      this.setActiveKeep(keep);
+      keep.views += 1;
+      this.$store.dispatch("addView", keep);
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);

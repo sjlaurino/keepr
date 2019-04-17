@@ -143,5 +143,11 @@ export default new Vuex.Store({
     setActiveKeep({ commit, dispatch }, keep) {
       commit("setActiveKeep", keep)
     },
+    addView({ commit, dispatch }, keep) {
+      api.put("/keep/" + keep.id, keep)
+        .then(res => {
+          dispatch("getKeeps")
+        })
+    }
   }
 })

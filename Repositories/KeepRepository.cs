@@ -46,5 +46,33 @@ namespace keepr.Repositories
       int success = _db.Execute("DELETE FROM keeps WHERE id = @id", new { id });
       return success > 0;
     }
+
+    public Keep EditKeep(Keep editedKeep)
+    {
+      try
+      {
+        string query = @"
+        UPDATE keeps SET 
+        name = @Name,
+        views = @Views,
+        description = @Description,
+        userId = @UserId,
+        img = @Img,
+        isPrivate = @Private,
+        shares = @Shares,
+        keeps = @Keeps
+
+        WHERE id = @Id;
+        SELECT * FROM keeps WHERE id = @Id;
+        ";
+        return _db.QueryFirstOrDefault<Keep>(query, editedKeep);
+      }
+      catch (Exception e)
+      {
+        Console.WriteLine(e);
+        return null;
+      };
+
+    }
   }
 }
