@@ -1,6 +1,7 @@
 <template>
   <div class="vaults">
     <div class="card">
+      {{vaultData.id}}
       <i
         @click="deleteVault(vaultData)"
         class="d-flex justify-content-end far fa-trash-alt trash mt-1 mr-1"
@@ -16,9 +17,9 @@
                 @click="addView(keep)"
                 class="fas fa-expand"
                 data-toggle="modal"
-                data-target="#oneKeepModal"
+                :data-target="'#oneKeepModal'+keep.id"
               ></i>
-              <oneKeep :vaultId="vaultData.id"></oneKeep>
+              <oneKeep :vaultId="vaultData.id" :keep="keep"></oneKeep>
             </span>
             <img :src="keep.img" class="card-img-top img-fluid">
             <div class="card-body">

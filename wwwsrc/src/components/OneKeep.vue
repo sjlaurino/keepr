@@ -2,7 +2,7 @@
   <div class="OneKeep">
     <div
       class="modal fade"
-      id="oneKeepModal"
+      :id="'oneKeepModal'+keep.id"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -18,6 +18,7 @@
               data-dismiss="modal"
               aria-label="Close"
             ></i>
+            {{vaultId}}
             <h5>{{activeKeep.name}}</h5>
             <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -66,7 +67,7 @@
 <script>
 export default {
   name: "OneKeep",
-  props: ["vaultId"],
+  props: ["vaultId", "keep"],
   data() {
     return {};
   },

@@ -135,6 +135,7 @@ export default new Vuex.Store({
         })
     },
     deleteKeepFromVault({ commit, dispatch }, data) {
+      debugger
       api.delete("/vault/" + data.vaultId + "/keep/" + data.keepId)
         .then(res => {
           dispatch("getVaultKeeps", data.vaultId)

@@ -8,7 +8,7 @@
             @click="addView(keep)"
             class="fas fa-expand"
             data-toggle="modal"
-            data-target="#oneKeepModal"
+            :data-target="'#oneKeepModal'+keep.id"
           ></i>
           <oneKeep></oneKeep>
           <!-- jquery this modal to get it to trigger modal from state after the active keep is set -->
