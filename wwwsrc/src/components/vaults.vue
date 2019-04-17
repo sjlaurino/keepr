@@ -13,7 +13,7 @@
           <div v-if="!keep.private" class="card">
             <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
               <i
-                @click="setActiveKeep(keep)"
+                @click="addView(keep)"
                 class="fas fa-expand"
                 data-toggle="modal"
                 data-target="#oneKeepModal"
@@ -60,6 +60,11 @@ export default {
   methods: {
     deleteVault(vault) {
       this.$store.dispatch("deleteVault", vault.id);
+    },
+    addView(keep) {
+      this.setActiveKeep(keep);
+      keep.views += 1;
+      this.$store.dispatch("addView", keep);
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);
