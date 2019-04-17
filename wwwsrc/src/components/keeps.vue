@@ -23,21 +23,24 @@
               {{keep.views}}
             </span>
             <div class="dropdown line">
-              <i
-                @click="setActiveKeep(keep)"
-                href="#"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                class="far fa-save clicks"
-              ></i>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div v-for="vault in vaults" :key="vault._id">
-                  <a @click="addVaultKeep(vault)" class="dropdown-item">{{vault.name}}</a>
-                  <div class="dropdown-divider"></div>
+              <span>
+                <i
+                  @click="setActiveKeep(keep)"
+                  href="#"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  class="far fa-save clicks"
+                ></i>
+                {{keep.keeps}}
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <div v-for="vault in vaults" :key="vault._id">
+                    <a @click="addVaultKeep(vault)" class="dropdown-item">{{vault.name}}</a>
+                    <div class="dropdown-divider"></div>
+                  </div>
                 </div>
-              </div>
+              </span>
             </div>
           </span>
         </div>
@@ -70,6 +73,7 @@ export default {
   },
   methods: {
     addVaultKeep(vault) {
+      this.plusKeep(this.activeKeep);
       this.$store.dispatch("addVaultKeep", {
         vaultId: vault.id,
         keepId: this.activeKeep.id,
@@ -79,7 +83,11 @@ export default {
     addView(keep) {
       this.setActiveKeep(keep);
       keep.views += 1;
-      this.$store.dispatch("addView", keep);
+      this.$store.dispatch("editKeep", keep);
+    },
+    plusKeep(keep) {
+      keep.keeps += 1;
+      this.$store.dispatch("editKeep", keep);
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);

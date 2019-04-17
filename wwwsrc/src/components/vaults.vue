@@ -64,7 +64,7 @@ export default {
     addView(keep) {
       this.setActiveKeep(keep);
       keep.views += 1;
-      this.$store.dispatch("addView", keep);
+      this.$store.dispatch("editKeep", keep);
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);
