@@ -92,5 +92,19 @@ namespace Vaultr.Controllers
       return Ok(results);
     }
 
+    //delete vaultKeeps
+    [Authorize]
+    [HttpDelete("{vaultId}/keep/{keepId}")]
+
+    public ActionResult<string> Delete(int vaultId, int keepId)
+    {
+      string userId = HttpContext.User.Identity.Name;
+      bool successful = _vr.DeleteFromVaultKeep(vaultId, keepId, userId);
+      if (!successful)
+      {
+        return BadRequest("Cannot Delete");
+      }
+      return Ok("successfully deleted");
+    }
   }
 }

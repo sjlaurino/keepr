@@ -134,6 +134,12 @@ export default new Vuex.Store({
           dispatch("getKeeps")
         })
     },
+    deleteKeepFromVault({ commit, dispatch }, data) {
+      api.delete("/vault/" + data.vaultId + "/keep/" + data.keepId)
+        .then(res => {
+          dispatch("getVaultKeeps", data.vaultId)
+        })
+    },
     setActiveKeep({ commit, dispatch }, keep) {
       commit("setActiveKeep", keep)
     },
