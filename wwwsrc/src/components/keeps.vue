@@ -4,7 +4,13 @@
       <div v-if="!keep.private" class="card">
         <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
           <!-- change this to only be accessible by user when keep is opened -->
-          <i @click="deleteKeep(keep)" class="fas fa-expand"></i>
+          <i
+            @click="setActiveKeep(keep)"
+            class="fas fa-expand"
+            data-toggle="modal"
+            data-target="#oneKeepModal"
+          ></i>
+          <!-- jquery this modal to get it to trigger modal from state after the active keep is set -->
         </span>
         <img :src="keep.img" class="card-img-top img-fluid">
         <div class="card-body">
