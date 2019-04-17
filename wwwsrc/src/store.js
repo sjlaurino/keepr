@@ -43,7 +43,6 @@ export default new Vuex.Store({
       state.activeKeep = keep
     },
     setVaultKeeps(state, data) {
-      debugger
       // state.vaultKeeps = vaultKeeps
       Vue.set(state.vaultKeeps, data.vaultId, data.vaultKeeps)
     }

@@ -105,7 +105,6 @@ export default {
       }
     },
     getVaultKeeps(vaultId) {
-      debugger;
       this.$store.dispatch("getVaultKeeps", vaultId);
     }
   }
