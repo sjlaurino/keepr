@@ -10,6 +10,7 @@
             data-toggle="modal"
             data-target="#oneKeepModal"
           ></i>
+          <oneKeep></oneKeep>
           <!-- jquery this modal to get it to trigger modal from state after the active keep is set -->
         </span>
         <img :src="keep.img" class="card-img-top img-fluid">
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+import oneKeep from "@/components/OneKeep.vue";
 export default {
   name: "keep",
   props: [],
@@ -79,7 +81,7 @@ export default {
       this.$store.dispatch("deleteKeep", keep);
     }
   },
-  components: {}
+  components: { oneKeep }
 };
 </script>
 <style>

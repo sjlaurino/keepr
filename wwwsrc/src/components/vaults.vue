@@ -8,23 +8,21 @@
       <div class="card-body">
         <h5 class="card-title">{{vaultData.name}}</h5>
         <p class="card-text">{{vaultData.description}}</p>
-        <div class="row">
-          <div v-for="keep in vaultKeeps" :key="keep._id">
-            <div v-if="!keep.private" class="card col-3">
-              <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
-                <i class="fas fa-expand"></i>
-              </span>
-              <img :src="keep.img" class="card-img-top img-fluid">
-              <div class="card-body">
-                <h5 class="card-title">{{keep.name}}</h5>
-                <p class="card-text">{{keep.description}}</p>
-                <span class="d-flex flex-row justify-content-between">
-                  <span>
-                    <i class="far fa-eye clicks"></i>
-                    {{keep.views}}
-                  </span>
+        <div v-for="keep in vaultKeeps" :key="keep._id">
+          <div v-if="!keep.private" class="card col-3">
+            <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
+              <i class="fas fa-expand"></i>
+            </span>
+            <img :src="keep.img" class="card-img-top img-fluid">
+            <div class="card-body">
+              <h5 class="card-title">{{keep.name}}</h5>
+              <p class="card-text">{{keep.description}}</p>
+              <span class="d-flex flex-row justify-content-between">
+                <span>
+                  <i class="far fa-eye clicks"></i>
+                  {{keep.views}}
                 </span>
-              </div>
+              </span>
             </div>
           </div>
         </div>

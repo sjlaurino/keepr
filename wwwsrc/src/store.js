@@ -136,6 +136,6 @@ export default new Vuex.Store({
     },
     setActiveKeep({ commit, dispatch }, keep) {
       commit("setActiveKeep", keep)
-    }
+    },
   }
 })

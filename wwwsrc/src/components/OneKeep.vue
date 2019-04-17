@@ -18,13 +18,13 @@
           </div>
 
           <div class="card">
-            <img :src="activeKeep.img" class="card-img-top img-fluid">
+            <img :src="activeKeep.img" class="card-img-top img img-fluid">
             <div class="card-body">
               <p class="card-text">{{activeKeep.description}}</p>
               <span class="d-flex flex-row justify-content-between">
                 <span>
                   <i class="far fa-eye clicks"></i>
-                  {{keep.views}}
+                  {{activeKeep.views}}
                 </span>
               </span>
             </div>
@@ -55,3 +55,8 @@ export default {
   components: {}
 };
 </script>
+<style>
+.img{
+  
+}
+</style>
