@@ -1,7 +1,7 @@
 <template>
   <div class="keep">
     <div v-for="keep in keeps" :key="keep._id">
-      <div v-if="!keep.private" class="card">
+      <div v-if="!keep.private" class="card shadow p-3">
         <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
           <!-- change this to only be accessible by user when keep is opened -->
           <i
@@ -75,10 +75,6 @@ export default {
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);
-    },
-    deleteKeep(keep) {
-      debugger;
-      this.$store.dispatch("deleteKeep", keep);
     }
   },
   components: { oneKeep }
@@ -89,6 +85,6 @@ export default {
   cursor: pointer;
 }
 .card {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 </style>

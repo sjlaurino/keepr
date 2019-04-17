@@ -10,9 +10,16 @@
     >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">{{activeKeep.name}}</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <div class="modal-header d-flex justify-content-between">
+            <i
+              v-if="user"
+              @click="deleteKeep(activeKeep)"
+              class="far fa-trash-alt trash mt-1 mr-1"
+              data-dismiss="modal"
+              aria-label="Close"
+            ></i>
+            <h5>{{activeKeep.name}}</h5>
+            <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -26,6 +33,23 @@
                   <i class="far fa-eye clicks"></i>
                   {{activeKeep.views}}
                 </span>
+                <div class="dropdown line">
+                  <i
+                    @click="setActiveKeep(keep)"
+                    href="#"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    class="far fa-save clicks"
+                  ></i>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <div v-for="vault in vaults" :key="vault._id">
+                      <a @click="addVaultKeep(vault)" class="dropdown-item">{{vault.name}}</a>
+                      <div class="dropdown-divider"></div>
+                    </div>
+                  </div>
+                </div>
               </span>
             </div>
           </div>
@@ -49,14 +73,38 @@ export default {
   computed: {
     activeKeep() {
       return this.$store.state.activeKeep;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    vaults() {
+      return this.$store.state.vaults;
     }
   },
-  methods: {},
+  methods: {
+    deleteKeep(activeKeep) {
+      if (this.user.id == activeKeep.userId) {
+        this.$store.dispatch("deleteKeep", activeKeep);
+      } else {
+        console.log("Not your Keep to delete");
+      }
+    },
+    addVaultKeep(vault) {
+      this.$store.dispatch("addVaultKeep", {
+        vaultId: vault.id,
+        keepId: this.activeKeep.id,
+        userId: this.$store.state.user.id
+      });
+    },
+    setActiveKeep(keep) {
+      this.$store.dispatch("setActiveKeep", keep);
+    }
+  },
   components: {}
 };
 </script>
 <style>
-.img{
-  
+.img {
+  max-height: 500px;
 }
 </style>

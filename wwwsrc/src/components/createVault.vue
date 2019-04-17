@@ -68,6 +68,7 @@ export default {
     addVault() {
       this.newVault.userId = this.$store.state.user.id;
       this.$store.dispatch("addVault", this.newVault);
+      this.$router.push({ name: "profile" });
     }
   },
   components: {}
