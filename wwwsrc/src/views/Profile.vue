@@ -47,10 +47,10 @@
     <button
       @click="showPrivate = !showPrivate"
       type="button"
-      class="btn btn-light mb-5"
-    >My Private Keeps</button>
+      class="btn btn-outline-secondary mb-5"
+    >My Keeps</button>
     <div v-if="showPrivate">
-      <keeps class="col-3"></keeps>
+      <keeps></keeps>
     </div>
     <createKeep></createKeep>
     <createVault></createVault>

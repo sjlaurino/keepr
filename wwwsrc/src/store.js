@@ -118,7 +118,7 @@ export default new Vuex.Store({
       api.post("/keep/", keep)
         .then(res => {
           dispatch("getKeeps")
-          debugger
+          dispatch("getKeepsByUser")
         })
     },
     addVault({ commit, dispatch }, vault) {
@@ -143,6 +143,7 @@ export default new Vuex.Store({
       api.delete("/keep/" + keep.id)
         .then(res => {
           dispatch("getKeeps")
+          dispatch("getKeepsByUser")
         })
     },
     deleteKeepFromVault({ commit, dispatch }, data) {
@@ -159,6 +160,7 @@ export default new Vuex.Store({
       api.put("/keep/" + keep.id, keep)
         .then(res => {
           dispatch("getKeeps")
+          dispatch("getKeepsByUser")
         })
     }
   }

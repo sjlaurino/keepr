@@ -63,7 +63,7 @@ namespace keepr.Repositories
         description = @Description,
         userId = @UserId,
         img = @Img,
-        isPrivate = @Private,
+        isPrivate = @IsPrivate,
         shares = @Shares,
         keeps = @Keeps
 
