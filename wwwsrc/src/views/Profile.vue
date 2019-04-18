@@ -1,7 +1,7 @@
 <template>
   <div class="profile container">
     <div class="row">
-      <h1 class="capitalize col-12 mt-1">{{user.username}}'s Profile</h1>
+      <h1 class="text-capitalize col-12 mt-1">{{user.username}}'s Profile</h1>
     </div>
     <span class="d-flex flex-row justify-content-center mb-2">
       <button
