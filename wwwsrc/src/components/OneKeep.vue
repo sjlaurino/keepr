@@ -83,13 +83,9 @@ export default {
   },
   methods: {
     deleteKeep(activeKeep) {
-      if (this.$route.name == "home") {
-        if (this.user.id == activeKeep.userId) {
-          this.$store.dispatch("deleteKeep", activeKeep);
-        } else {
-          console.log("Not your Keep to delete");
-        }
-      } else if (this.$route.name == "profile") {
+      if (!this.vaultId) {
+        this.$store.dispatch("deleteKeep", activeKeep);
+      } else if (this.vaultId) {
         let keepId = activeKeep.id;
         let vaultId = this.vaultId;
         this.deleteKeepFromVault({ keepId: keepId, vaultId: vaultId });
