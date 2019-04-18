@@ -11,7 +11,7 @@
             aria-expanded="false"
           ></i>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div v-if="homePage">
+            <div v-if="homePage && userId">
               <a @click="profile" class="dropdown-item">Profile</a>
               <div class="dropdown-divider"></div>
             </div>
@@ -19,8 +19,11 @@
               <a @click="home" class="dropdown-item">Home Page</a>
               <div class="dropdown-divider"></div>
             </div>
-            <div>
+            <div v-if="userId">
               <a @click="logOut" class="dropdown-item">logout</a>
+            </div>
+            <div v-else>
+              <a @click="logOut" class="dropdown-item">Register</a>
             </div>
           </div>
         </div>
@@ -64,9 +67,6 @@ import createVault from "@/components/createVault.vue";
 export default {
   name: "home",
   mounted() {
-    if (!this.$store.state.user.id) {
-      this.$router.push({ name: "login" });
-    }
     this.$store.dispatch("getKeeps");
     this.$store.dispatch("getVaults");
   },
