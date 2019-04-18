@@ -165,5 +165,6 @@ export default {
 }
 .card {
   background-color: whitesmoke;
+  border-color: #1cb3c8;
 }
 </style>

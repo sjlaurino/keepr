@@ -1,35 +1,34 @@
 <template>
   <div class="home container">
-    <div class="row">
-      <div class="col-12">
-        <div class="dropdown col-1 line mt-1">
-          <i
-            class="fas fa-bars d-flex"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          ></i>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <div v-if="homePage && userId">
-              <a @click="profile" class="dropdown-item">Profile</a>
-              <div class="dropdown-divider"></div>
-            </div>
-            <div v-if="!homePage">
-              <a @click="home" class="dropdown-item">Home Page</a>
-              <div class="dropdown-divider"></div>
-            </div>
-            <div v-if="userId">
-              <a @click="logOut" class="dropdown-item">logout</a>
-            </div>
-            <div v-else>
-              <a @click="logOut" class="dropdown-item">Register</a>
-            </div>
+    <nav class="col-12 navbar">
+      <div class="dropdown line mt-1">
+        <i
+          class="fas fa-bars fa-2x"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        ></i>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div v-if="homePage && userId">
+            <a @click="profile" class="dropdown-item">Profile</a>
+            <div class="dropdown-divider"></div>
+          </div>
+          <div v-if="!homePage">
+            <a @click="home" class="dropdown-item">Home Page</a>
+            <div class="dropdown-divider"></div>
+          </div>
+          <div v-if="userId">
+            <a @click="logOut" class="dropdown-item">logout</a>
+          </div>
+          <div v-else>
+            <a @click="logOut" class="dropdown-item">Register</a>
           </div>
         </div>
-        <h1>Welcome to Keepr</h1>
       </div>
-    </div>
+      <h1 class="header text-left">Welcome to Keepr</h1>
+    </nav>
+    <div class="row"></div>
     <span class="d-flex flex-row justify-content-center mb-5">
       <button
         @click="notLoggedIn"
@@ -121,5 +120,14 @@ export default {
 }
 .inline {
   display: inline-block;
+}
+.navbar {
+  background-color: #738598;
+}
+.fa-bars {
+  color: whitesmoke;
+}
+.header {
+  color: whitesmoke;
 }
 </style>

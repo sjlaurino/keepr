@@ -35,6 +35,7 @@
                 </span>
                 <div class="dropdown line">
                   <i
+                    v-if="user"
                     @click="setActiveKeep(keep)"
                     href="#"
                     id="dropdownMenuButton"

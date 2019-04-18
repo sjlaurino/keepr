@@ -1,6 +1,6 @@
 <template>
   <div class="vaults">
-    <div class="card">
+    <div class="card vault shadow p-3">
       <i
         @click="deleteVault(vaultData)"
         class="d-flex justify-content-end far fa-trash-alt trash mt-1 mr-1"
@@ -80,5 +80,8 @@ export default {
 
 .make-inline {
   display: inline-block;
+}
+.vault {
+  background-color: #dfe2e2;
 }
 </style>
