@@ -12,7 +12,7 @@
         <div class="modal-content">
           <div class="modal-header d-flex justify-content-between">
             <i
-              v-if="user"
+              v-if="user.id == activeKeep.userId"
               @click="deleteKeep(activeKeep)"
               class="far fa-trash-alt trash mt-1 mr-1"
               data-dismiss="modal"
@@ -35,7 +35,7 @@
                 </span>
                 <div class="dropdown line">
                   <i
-                    v-if="user"
+                    v-if="user.id"
                     @click="setActiveKeep(keep)"
                     href="#"
                     id="dropdownMenuButton"
@@ -45,7 +45,8 @@
                     class="far fa-save clicks"
                   ></i>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div v-for="vault in vaults" :key="vault._id">
+                    <a v-if="vaults.length==0">No Vaults</a>
+                    <div v-else v-for="vault in vaults" :key="vault._id">
                       <a @click="addVaultKeep(vault)" class="dropdown-item">{{vault.name}}</a>
                       <div class="dropdown-divider"></div>
                     </div>

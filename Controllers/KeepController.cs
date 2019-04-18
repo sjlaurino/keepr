@@ -82,7 +82,8 @@ namespace Keepr.Controllers
     [HttpDelete("{id}")]
     public ActionResult<string> Delete(int id)
     {
-      bool successful = _kr.Delete(id);
+      string userId = HttpContext.User.Identity.Name;
+      bool successful = _kr.Delete(id, userId);
       if (!successful)
       {
         return BadRequest("Cannot Delete");

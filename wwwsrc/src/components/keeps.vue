@@ -35,7 +35,8 @@
                   ></i>
                   {{keep.keeps}}
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <div v-for="vault in vaults" :key="vault._id">
+                    <a v-if="vaults.length==0">No Vaults</a>
+                    <div v-else v-for="vault in vaults" :key="vault._id">
                       <a @click="addVaultKeep(vault)" class="dropdown-item">{{vault.name}}</a>
                       <div class="dropdown-divider"></div>
                     </div>
