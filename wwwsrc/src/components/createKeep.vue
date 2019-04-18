@@ -42,7 +42,18 @@
               v-model="newKeep.img"
               required
             >
-            <!-- need to add a button to make private -->
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                v-model="newKeep.private"
+                value
+                id="defaultCheck1"
+              >
+              <span>
+                <label class="form-check-label" for="defaultCheck1">Make Keep Private</label>
+              </span>
+            </div>
             <button
               type="submit"
               class="btn btn-outline-info mt-1 ml-2 mb-3"
@@ -66,15 +77,17 @@ export default {
   data() {
     return {
       newKeep: {
-        name: "",
-        description: "",
-        img: ""
+        Name: "",
+        Description: "",
+        Img: "",
+        Private: false
       }
     };
   },
   computed: {},
   methods: {
     addKeep() {
+      debugger;
       this.$store.dispatch("addKeep", this.newKeep);
     }
   },

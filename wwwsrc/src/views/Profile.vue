@@ -27,7 +27,7 @@
         <h1>My Vaults</h1>
       </div>
     </div>
-    <span class="d-flex flex-row justify-content-center mb-5">
+    <span class="d-flex flex-row justify-content-center mb-2">
       <button
         v-if="userId"
         type="button"
@@ -44,6 +44,16 @@
         data-target="#createVaultModal"
       >Create a Vault</button>
     </span>
+    <button
+      @click="showPrivate = !showPrivate"
+      type="button"
+      class="btn btn-light mb-5"
+    >My Private Keeps</button>
+    <div v-for="keep in keeps" :key="keep.id">
+      <div v-if="showPrivate">
+        <keeps v-if="keep.private"></keeps>
+      </div>
+    </div>
     <createKeep></createKeep>
     <createVault></createVault>
     <vaults class="ml-2 mt-2" v-for="vault in vaults" :vaultData="vault" :key="vault.id"></vaults>
@@ -51,6 +61,7 @@
 </template>
 
 <script>
+import keeps from "@/components/keeps.vue";
 import vaults from "@/components/vaults.vue";
 import createKeep from "@/components/createKeep.vue";
 import createVault from "@/components/createVault.vue";
@@ -58,7 +69,9 @@ export default {
   name: "profile",
   props: [],
   data() {
-    return {};
+    return {
+      showPrivate: false
+    };
   },
   computed: {
     homePage() {
@@ -69,6 +82,9 @@ export default {
     },
     userId() {
       return this.$store.state.user.id;
+    },
+    keeps() {
+      return this.$store.state.keeps;
     }
   },
   mounted() {
@@ -90,7 +106,8 @@ export default {
   components: {
     vaults,
     createKeep,
-    createVault
+    createVault,
+    keeps
   },
   methods: {
     logOut() {

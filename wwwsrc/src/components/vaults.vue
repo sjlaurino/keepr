@@ -1,7 +1,6 @@
 <template>
   <div class="vaults">
     <div class="card">
-      {{vaultData.id}}
       <i
         @click="deleteVault(vaultData)"
         class="d-flex justify-content-end far fa-trash-alt trash mt-1 mr-1"

@@ -1,6 +1,6 @@
 <template>
   <div class="keep">
-    <div v-for="keep in keeps" :key="keep._id">
+    <div v-for="keep in keeps" :key="keep.id">
       <div v-if="!keep.private" class="card shadow p-3">
         <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
           <!-- change this to only be accessible by user when keep is opened -->
@@ -10,8 +10,7 @@
             data-toggle="modal"
             :data-target="'#oneKeepModal'+keep.id"
           ></i>
-          <oneKeep></oneKeep>
-          <!-- jquery this modal to get it to trigger modal from state after the active keep is set -->
+          <oneKeep :keep="keep"></oneKeep>
         </span>
         <img :src="keep.img" class="card-img-top img-fluid">
         <div class="card-body">

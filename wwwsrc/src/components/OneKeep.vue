@@ -18,7 +18,6 @@
               data-dismiss="modal"
               aria-label="Close"
             ></i>
-            {{vaultId}}
             <h5>{{activeKeep.name}}</h5>
             <button type="button" class="close ml-0" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
