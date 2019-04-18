@@ -16,7 +16,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="addKeep">
+          <form>
             <input
               id="nameInput"
               class="col-12"
@@ -46,8 +46,7 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                v-model="newKeep.private"
-                value
+                v-model="newKeep.isPrivate"
                 id="defaultCheck1"
               >
               <span>
@@ -55,7 +54,7 @@
               </span>
             </div>
             <button
-              type="submit"
+              type="button"
               class="btn btn-outline-info mt-1 ml-2 mb-3"
               data-dismiss="modal"
               @click="addKeep()"
@@ -77,17 +76,16 @@ export default {
   data() {
     return {
       newKeep: {
-        Name: "",
-        Description: "",
-        Img: "",
-        Private: false
+        name: "",
+        description: "",
+        img: "",
+        isPrivate: false
       }
     };
   },
   computed: {},
   methods: {
     addKeep() {
-      debugger;
       this.$store.dispatch("addKeep", this.newKeep);
     }
   },

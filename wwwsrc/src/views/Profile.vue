@@ -24,7 +24,7 @@
             </div>
           </div>
         </div>
-        <h1>My Vaults</h1>
+        <h1>My Profile</h1>
       </div>
     </div>
     <span class="d-flex flex-row justify-content-center mb-2">
@@ -49,10 +49,8 @@
       type="button"
       class="btn btn-light mb-5"
     >My Private Keeps</button>
-    <div v-for="keep in keeps" :key="keep.id">
-      <div v-if="showPrivate">
-        <keeps v-if="keep.private"></keeps>
-      </div>
+    <div v-if="showPrivate">
+      <keeps class="col-3"></keeps>
     </div>
     <createKeep></createKeep>
     <createVault></createVault>
@@ -85,6 +83,9 @@ export default {
     },
     keeps() {
       return this.$store.state.keeps;
+    },
+    userKeeps() {
+      return this.$store.state.userKeeps;
     }
   },
   mounted() {
@@ -94,6 +95,7 @@ export default {
       this.$router.push({ name: "login" });
     } else {
       this.$store.dispatch("getKeeps");
+      this.$store.dispatch("getKeepsByUser");
       let vaults = this.vaults;
       for (let i = 0; i < vaults.length; i++) {
         let vault = vaults[i];

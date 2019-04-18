@@ -42,6 +42,20 @@ namespace Keepr.Controllers
       return Ok(found);
     }
 
+    [HttpGet("profile")]
+    [Authorize]
+    //need to check this
+    public ActionResult<IEnumerable<Keep>> GetByUser()
+    {
+      string userId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _kr.GetAllPrivate(userId);
+      if (results == null)
+      {
+        return BadRequest();
+      }
+      return Ok(results);
+    }
+
     [HttpPost]
     public ActionResult<Keep> Create([FromBody] Keep keepData)
     {

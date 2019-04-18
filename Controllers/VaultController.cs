@@ -21,9 +21,11 @@ namespace Vaultr.Controllers
     }
 
     [HttpGet]
+    [Authorize]
     public ActionResult<IEnumerable<Vault>> Get()
     {
-      IEnumerable<Vault> results = _vr.GetAll();
+      string userId = HttpContext.User.Identity.Name;
+      IEnumerable<Vault> results = _vr.GetAll(userId);
       if (results == null)
       {
         return BadRequest();

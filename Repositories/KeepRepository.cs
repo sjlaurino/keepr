@@ -15,7 +15,12 @@ namespace keepr.Repositories
     }
     public IEnumerable<Keep> GetAll()
     {
-      return _db.Query<Keep>("SELECT * FROM keeps");
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE isPrivate = false");
+    }
+
+    public IEnumerable<Keep> GetAllPrivate(string userId)
+    {
+      return _db.Query<Keep>("SELECT * FROM keeps WHERE userId = @userId", new { userId });
     }
 
     public Keep FindById(int id)
@@ -28,8 +33,8 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-        INSERT INTO keeps(name, description, userId, img)
-        VALUES (@Name, @Description, @UserId, @Img );
+        INSERT INTO keeps(name, description, userId, img, isPrivate)
+        VALUES (@Name, @Description, @UserId, @Img, @IsPrivate);
         SELECT LAST_INSERT_ID();", keepData);
         keepData.Id = id;
         return keepData;

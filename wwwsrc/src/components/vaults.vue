@@ -10,7 +10,7 @@
         <p class="card-text">{{vaultData.description}}</p>
         <hr>
         <div v-for="keep in vaultKeeps" :key="keep._id" class="make-inline col-3">
-          <div v-if="!keep.private" class="card">
+          <div class="card">
             <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
               <i
                 @click="addView(keep)"
