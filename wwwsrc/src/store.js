@@ -68,6 +68,7 @@ export default new Vuex.Store({
           commit('setUser', res.data)
           dispatch('getKeeps')
           dispatch('getKeepsByUser')
+          dispatch("getVaults");
         })
         .catch(e => {
           console.log('not authenticated')
@@ -112,6 +113,12 @@ export default new Vuex.Store({
       api.get("/vault/")
         .then(res => {
           commit("setVaults", res.data)
+          let vaults = res.data;
+          for (let i = 0; i < vaults.length; i++) {
+            let vault = vaults[i];
+            let vaultId = vault.id;
+            dispatch('getVaultKeeps', vaultId);
+          }
         }
         )
     },

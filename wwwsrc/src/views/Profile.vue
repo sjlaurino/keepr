@@ -64,22 +64,7 @@ export default {
       return this.$store.state.userKeeps;
     }
   },
-  mounted() {
-    //blocks users not logged in
-    this.$store.dispatch("getVaults", this.$store.state.user.id);
-    if (!this.$store.state.user.id) {
-      this.$router.push({ name: "login" });
-    } else {
-      this.$store.dispatch("getKeeps");
-      this.$store.dispatch("getKeepsByUser");
-      let vaults = this.vaults;
-      for (let i = 0; i < vaults.length; i++) {
-        let vault = vaults[i];
-        let vaultId = vault.id;
-        this.getVaultKeeps(vaultId);
-      }
-    }
-  },
+  mounted() {},
   methods: {},
   components: {
     vaults,
