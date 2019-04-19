@@ -51,7 +51,7 @@
 
     <div v-if="showUserKeeps">
       <div class="row">
-        <div v-for="keep in userKeeps" :key="keep.id" class="col-4">
+        <div v-for="keep in userKeeps" :key="keep.id" class="col-12 col-md-4">
           <div v-if="!keep.private" class="card shadow p-3">
             <span class="d-flex flex-row justify-content-end mr-1 mt-1 mb-1 clicks">
               <!-- change this to only be accessible by user when keep is opened -->
