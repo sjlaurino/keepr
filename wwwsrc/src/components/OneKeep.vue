@@ -96,6 +96,12 @@ export default {
       }
     },
     addVaultKeep(vault) {
+      this.vaultKeeps[vault.id].find(k => {
+        let duplicate = k.id == this.activeKeep.id;
+        if (duplicate) {
+          alert("You already have that keep in your vault!");
+        }
+      });
       this.$store.dispatch("addVaultKeep", {
         vaultId: vault.id,
         keepId: this.activeKeep.id,
@@ -108,6 +114,10 @@ export default {
     },
     deleteKeepFromVault(data) {
       this.$store.dispatch("deleteKeepFromVault", data);
+    },
+    plusKeep(keep) {
+      keep.keeps += 1;
+      this.$store.dispatch("editKeep", keep);
     }
   },
   components: {}
