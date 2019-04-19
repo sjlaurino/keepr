@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Dapper;
 using keepr.Models;
 
@@ -44,6 +45,12 @@ namespace keepr.Repositories
     {
       try
       {
+        var duplicate = _db.Query<Keep>(@"SELECT * FROM vaultkeeps vk 
+        WHERE(vaultId = @vaultId AND keepId = @keepId)", vaultKeepData);
+        if (duplicate.Count() > 0)
+        {
+          return null;
+        }
         int id = _db.ExecuteScalar<int>(@"
         INSERT INTO vaultKeeps(vaultId, keepId, userId)
         VALUES (@VaultId, @KeepId, @UserId );

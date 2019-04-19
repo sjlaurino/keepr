@@ -101,6 +101,7 @@ export default {
         keepId: this.activeKeep.id,
         userId: this.$store.state.user.id
       });
+      this.plusKeep(this.activeKeep);
     },
     setActiveKeep(keep) {
       this.$store.dispatch("setActiveKeep", keep);

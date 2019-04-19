@@ -137,12 +137,18 @@ export default {
   },
   methods: {
     addVaultKeep(vault) {
-      this.plusKeep(this.activeKeep);
+      this.vaultKeeps[vault.id].find(k => {
+        let duplicate = k.id == this.activeKeep.id;
+        if (duplicate) {
+          alert("You already have that keep in your vault!");
+        }
+      });
       this.$store.dispatch("addVaultKeep", {
         vaultId: vault.id,
         keepId: this.activeKeep.id,
         userId: this.$store.state.user.id
       });
+      this.plusKeep(this.activeKeep);
     },
     addView(keep) {
       this.setActiveKeep(keep);
